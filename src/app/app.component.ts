@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HomeComponent } from './views/home/home.component';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,7 +9,8 @@ import { HomeComponent } from './views/home/home.component';
   entryComponents: [HomeComponent],
 })
 export class AppComponent {
-  title = 'fictasy-hub';
+  title = 'fictasy-hub'; 
+
   ngOnInit(): void {
     console.log("Se cargó el componente padre");
   }
