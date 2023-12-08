@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { MovieDatabaseService } from '../../services/movie-database.service';
+import { Movie } from '../../shared/interfaces/movie';
 
 @Component({
     selector: 'app-home',
@@ -8,14 +9,10 @@ import { MovieDatabaseService } from '../../services/movie-database.service';
 })
 
 export class HomeComponent implements OnInit {
-
-    constructor(private movieSvc:MovieDatabaseService){
-        this.movieSvc.getMovies().subscribe(res=>{
-          console.log(res);
-        })
-      }
+movieList: Movie[] = [];
+constructor(private moviDbSvc:MovieDatabaseService){ }
       
     ngOnInit(): void {
-        console.log("Se cargó el componente");
+        this.moviDbSvc.getMovies().subscribe((resp) => { this.movieList = resp});
     }
 }
