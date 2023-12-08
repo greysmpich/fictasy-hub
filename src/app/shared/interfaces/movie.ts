@@ -1,9 +1,9 @@
 export interface Movie {
-    poster: string;  
-    title: string;   
-    year: number;     
-    genre: Array<string>;
-    realaseDdate:  Date;
-    voteAverage: number;
-    overview: string;
-  }
+  poster_path: string;
+  title: string;
+  release_date: string;
+  genre_ids: number[];
+  id: number;
+  overview: string;
+  vote_average: number;
+}
