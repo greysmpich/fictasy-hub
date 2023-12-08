@@ -1,0 +1,56 @@
+.footer-div {
+    width: 100%;
+    height: 66px;
+    display: grid;
+    grid-template-rows: 10% 90%;
+    grid-template-columns: 56% 4.2% 11.3% 28.5%;    
+}
+
+hr {
+    height: 7px;
+    background-color: rgb(0, 253, 242);
+    grid-column-start: 1;
+    grid-column-end: 5;
+}
+
+.developed-by, .user-name, .develop-year {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.developed-by {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    justify-self: end;
+    align-self: center;
+}
+
+.repo-logo {
+    width: 30px;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    justify-self:end;
+    align-self: center;
+}
+
+.user-name {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    justify-self: start;
+    align-self: center;
+}
+
+.develop-year{
+    grid-column-start: 4;
+    grid-column-end: 5;
+    justify-self: start;
+    align-self: center;
+}
+
+.user-name:hover, .user-name:link{
+    text-decoration: none;
+    color: rgb(0, 253, 242);
+}
+
+
