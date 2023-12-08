@@ -7,7 +7,7 @@ describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
 
-  beforeEach( async() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [HeaderComponent]
     })
@@ -30,14 +30,14 @@ describe('HeaderComponent', () => {
     expect(compiled.querySelector('hr')).toBeTruthy();
   });
 
-  it('sholud have a valid URL in the "src" of the <img> element' , () => {
+  it('sholud have correct URL in the "src" of the <img> element' , () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
     const img: HTMLElement = compiled.querySelector('img');
     expect(img.getAttribute('src')).toBe('../../../../assets/images/fictasy-hub-logo.png');
   })
 
-  it('sholud have the correct text in <p> elment', ( )=> {
+  it('sholud have the correct slogan in <p> elment', ( )=> {
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
     const p: HTMLElement = compiled.querySelector('p');
