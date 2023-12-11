@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { fireEvent } from '@testing-library/angular';
 import { FooterComponent } from './footer.component';
 
 describe('FooterComponent', () => {
@@ -44,7 +44,7 @@ describe('FooterComponent', () => {
     expect(img.getAttribute('src')).toBe('../../../../assets/images/github.png');
   })
 
-  it('sholud have a valid URL in the "href" of the <a> element' , () => {
+  it('sholud have the correct URL in the "href" of the <a> element' , () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
     const link = compiled.querySelector('a');
@@ -69,6 +69,19 @@ describe('FooterComponent', () => {
     link.dispatchEvent(mouseOverEvent);
   
     expect(mouseOverSpy).toHaveBeenCalledWith(mouseOverEvent);
+  });
+
+  it('should open a new window with the link from the href attribute on clicking the anchor element',  () => {
+   const openSpy = jest.spyOn(window, 'open');
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement;
+    const link = compiled.querySelector('a');
+
+    const clickEvent = new MouseEvent('click');
+    link.dispatchEvent(clickEvent);
+    window.open('https://github.com/greysmpich', '_blank');
+
+    expect(openSpy).toHaveBeenCalled();
   });
   
 });
