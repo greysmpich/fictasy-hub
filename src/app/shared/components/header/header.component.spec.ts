@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { environment } from '../../../../environments/environment';
 import { HeaderComponent } from './header.component';
-
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -43,5 +42,12 @@ describe('HeaderComponent', () => {
     const p: HTMLElement = compiled.querySelector('p');
     expect(p.textContent).toContain('Tu portal a nuevos universos');
   })
+
+  it('should load the correct logo image', () => {
+    const apiUrl = environment.apiUrl;
+    const imgElement: HTMLImageElement = fixture.nativeElement.querySelector('.logo');
+    const expectedUrl = `${apiUrl}/assets/images/fictasy-hub-logo.png`;
+    expect(imgElement.src).toBe(expectedUrl);
+  });
 
 });
