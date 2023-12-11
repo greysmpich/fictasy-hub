@@ -4,3 +4,11 @@
        [movie] = "movie"></app-card> 
     </div>
 </section>
+<mat-paginator
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[20]"
+    [length]="totalResults"
+    (page)="onPageChange($event)"
+    ></mat-paginator>
+
+    

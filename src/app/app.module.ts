@@ -7,6 +7,10 @@ import { HomeComponent } from './views/home/home.component';
 import { CardComponent } from './components/card/card.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +23,10 @@ import { FooterComponent } from './shared/components/footer/footer.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatPaginatorModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
