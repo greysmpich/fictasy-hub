@@ -8,8 +8,7 @@ import { CardComponent } from './components/card/card.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatTableModule } from '@angular/material/table';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -25,8 +24,7 @@ import { MatTableModule } from '@angular/material/table';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatPaginatorModule,
-    MatTableModule
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
