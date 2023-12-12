@@ -1,14 +1,11 @@
 <section class="homeSection">
     <div class="cardsContainer">
-       <app-card *ngFor="let movie of movieList"
+       <app-card *ngFor="let movie of movieList | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: totalResults }"
        [movie] = "movie"></app-card> 
     </div>
 </section>
-<mat-paginator
-    [pageSize]="pageSize"
-    [pageSizeOptions]="[20]"
-    [length]="totalResults"
-    (page)="onPageChange($event)"
-    ></mat-paginator>
+<div>
+    <pagination-controls class="paginator" (pageChange)="onPageChange($event)"></pagination-controls>
+</div>
 
     
