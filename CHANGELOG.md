@@ -18,14 +18,3 @@ All notable changes to this project will be documented in this file. See [standa
 ### Bug Fixes
 
 * **component:** se corrigió un error en el total de resultados mostrados en el paginador ([7abf82b](https://github.com/greysmpich/fictasy-hub/commit/7abf82b2184d6cc3f01666bdbf2bf042c5a49b1e))
-
-## [1.0.0] - 2023-12-13
-
-### Nuevas Características
-- ...
-
-### Correcciones de Errores
-- ...
-
-### Mejoras
-- ...
