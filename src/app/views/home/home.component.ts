@@ -25,7 +25,7 @@ constructor(private moviDbSvc:MovieDatabaseService){ }
         const apiUrlWithPage = `https://api.themoviedb.org/3/discover/movie?api_key=b74a22ec79c7b7138fb203a5cba89793&with_genres=878|14&language=es-ES&page=${this.p}`;
         this.moviDbSvc.getMovies(apiUrlWithPage).subscribe((resp: ApiResponse) => { 
             this.movieList = resp.results;
-            this.totalResults = resp.total_results;
+            this.totalResults = 10000;
             this.scrollToTop();
         });
     }
