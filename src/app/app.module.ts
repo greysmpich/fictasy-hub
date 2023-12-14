@@ -10,6 +10,7 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FilterComponent } from './components/filter/filter.component';
+import { PaginatorComponent } from './components/paginator/paginator.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { FilterComponent } from './components/filter/filter.component';
     HeaderComponent,
     FooterComponent,
     FilterComponent,
+    PaginatorComponent,
   ],
   imports: [
     BrowserModule,
