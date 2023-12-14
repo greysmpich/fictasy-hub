@@ -9,6 +9,7 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { FilterComponent } from './components/filter/filter.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     CardComponent,
     HeaderComponent,
     FooterComponent,
+    FilterComponent,
   ],
   imports: [
     BrowserModule,

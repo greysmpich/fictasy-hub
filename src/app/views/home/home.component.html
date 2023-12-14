@@ -1,4 +1,5 @@
 <section class="homeSection">
+    <app-filter></app-filter>
     <div class="cardsContainer">
        <app-card *ngFor="let movie of movieList | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: totalResults }"
        [movie] = "movie"></app-card> 
