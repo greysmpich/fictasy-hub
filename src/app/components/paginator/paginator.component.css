@@ -1,0 +1,50 @@
+.paginator ::ng-deep .ngx-pagination {
+    display: flex;
+    justify-content: space-around;
+}  
+
+.paginator ::ng-deep .ngx-pagination li {
+    width: 60px;
+    height: 52px;
+    border-radius: 30px !important;
+    background: white;
+    color: rgb(255, 0, 164);
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.paginator ::ng-deep .ngx-pagination .disabled {
+    width: 116px;
+    height: 52px;
+    padding: 0;
+    text-align: center;
+    color: rgba(255, 0, 164, .5);
+}
+
+.paginator ::ng-deep .ngx-pagination .pagination-previous, .paginator ::ng-deep .ngx-pagination .pagination-next{
+    width: 116px;
+    height: 52px;
+}
+
+.paginator ::ng-deep .ngx-pagination .small-screen{
+    display: none !important;
+}
+
+.paginator ::ng-deep .ngx-pagination a{
+    color: rgb(255, 0, 164);
+    text-align: center;
+}
+
+.paginator ::ng-deep .ngx-pagination a:hover,
+.paginator ::ng-deep .ngx-pagination button:hover{
+    background: initial !important;
+}
+
+.paginator ::ng-deep .ngx-pagination li.current {
+    background: rgb(255, 0, 164);
+    color: rgb(0, 253, 242);
+    text-align: center;
+    padding: 0;
+}
