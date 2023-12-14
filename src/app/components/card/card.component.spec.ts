@@ -111,4 +111,34 @@ describe('CardComponent', () => {
 
      expect(component.getGenre()).toBeNull();
   })
+
+  it('should return "Ciencia ficción y Fantasía" if the movie includes both genres but appers first the sci-fi id in the genre-ids array', () => {
+    const component = new CardComponent();
+    component.movie = { 
+      poster_path: 'ruta/poster5.png', 
+      title: 'Prueba5',
+      release_date: '', 
+      genre_ids: [878, 14], 
+      id: 501255,
+      overview: 'Esta es una prueba',
+      vote_average: 6.5
+     }
+
+     expect(component.getGenre()).toEqual('Ciencia ficción y Fantasía');
+  })
+
+  it('should return "Fantasía y Ciencia ficción" if the movie includes both genres but appers first the fantasy id  in the genre-ids array', () => {
+    const component = new CardComponent();
+    component.movie = { 
+      poster_path: 'ruta/poster6.png', 
+      title: 'Prueba6',
+      release_date: '', 
+      genre_ids: [14, 878], 
+      id: 601266,
+      overview: 'Esta es una prueba',
+      vote_average: 8.5
+     }
+
+     expect(component.getGenre()).toEqual('Fantasía y Ciencia ficción');
+  })
 });
