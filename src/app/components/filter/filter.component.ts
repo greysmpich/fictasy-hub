@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MovieDatabaseService } from 'src/app/services/movie-database.service';
 
 @Component({
@@ -7,16 +7,17 @@ import { MovieDatabaseService } from 'src/app/services/movie-database.service';
   styleUrls: ['./filter.component.css']
 })
 export class FilterComponent implements OnInit {
-  constructor(private movieDbSvc: MovieDatabaseService) { }
 
-  ngOnInit(): void {
-    
-  }
+  constructor(public movieDbSvc: MovieDatabaseService) { }
+
+  ngOnInit(): void { }
 
   onGenreClick(genre: string): void {
     this.movieDbSvc.selectedGenre = genre;
     this.movieDbSvc.filterChangeEvent.emit(genre);
   }
 
-  
+  // onAllMoviesClick(genres: number): void{
+  //   this.movieDbSvc.allMoviesClicked.emit(genres);
+  // }
 }
