@@ -7,17 +7,24 @@ import { MovieDatabaseService } from 'src/app/services/movie-database.service';
   styleUrls: ['./filter.component.css']
 })
 export class FilterComponent implements OnInit {
+  p = 1;
+  genres = ['878', '14'];
+  language = 'es-ES';
 
   constructor(public movieDbSvc: MovieDatabaseService) { }
 
-  ngOnInit(): void { }
+  years: number[] = [];
+
+  ngOnInit(): void {
+    const apiUrlWithPage = this.movieDbSvc.buildApiUrl(this.genres, this.language, this.p);
+  }
 
   onGenreClick(genre: string): void {
     this.movieDbSvc.selectedGenre = genre;
-    this.movieDbSvc.filterChangeEvent.emit(genre);
+    this.movieDbSvc.filterGenreChangeEvent.emit(genre);
   }
 
-  // onAllMoviesClick(genres: number): void{
-  //   this.movieDbSvc.allMoviesClicked.emit(genres);
-  // }
+  onAllMoviesClick(): void {
+    this.movieDbSvc.clearFilters();
+  }
 }

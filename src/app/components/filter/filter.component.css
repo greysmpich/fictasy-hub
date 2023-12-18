@@ -43,6 +43,7 @@
   border-bottom-color: rgb(0, 253, 242);
   border-bottom-width: 3px;
   border-bottom-style: solid;
+  cursor: pointer;
  }
 
  .filters-options {
@@ -55,8 +56,7 @@
    padding-left: 2px;
  }
 
- .filters-options h2.genre-label,
- h2.year-label {
+ .filters-options h2.genre-label {
    color: white;
    font-size: 20px;
    font-weight: lighter;
@@ -64,12 +64,6 @@
    text-decoration: none;
    display: block;
    cursor: pointer;
- }
-
- .genre-label {
-   border-bottom-color: rgb(0, 253, 242);
-   border-bottom-width: 3px;
-   border-bottom-style: solid;
  }
 
  .filters-options h2:hover {
@@ -86,16 +80,11 @@
    border-radius: 15px 15px 0 0;
  }
 
- .year-label:hover {
-   border-radius: 0 0 15px 15px;
- }
-
  .filters-dropdown:hover .filters-options {
    display: block;
  }
 
- .sub-options-genre,
- .sub-options-year {
+ .sub-options-genre {
    width: 200px;
    border-radius: 15px;
    display: none;
@@ -109,12 +98,7 @@
    cursor: pointer;
  }
 
- .sub-options-year {
-   top: 90px !important;
- }
-
- .fantasy-genre-li,
- .year-one-li {
+ .fantasy-genre-li {
    border-bottom-color: rgb(0, 253, 242);
    border-bottom-width: 3px;
    border-bottom-style: solid;
@@ -130,8 +114,7 @@
    margin-top: 5px;
  }
 
- .filters-options li:hover .sub-options-genre,
- .filters-options li:hover .sub-options-year {
+ .filters-options li:hover .sub-options-genre {
    display: block;
  }
 

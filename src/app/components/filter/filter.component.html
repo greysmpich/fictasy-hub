@@ -6,19 +6,12 @@
       </figure>
     </button>
     <ul class="filters-options">
-      <li><h2 class="all-movies-option">Todas las películas</h2></li>
+      <li><h2 class="all-movies-option" (click)="onAllMoviesClick()">Todas las películas</h2></li>
       <li>
         <h2 class="genre-label">Género</h2>
         <ul class="sub-options-genre">
           <li class="fantasy-genre-li" (click)="onGenreClick('14')"><p [class.selected]="movieDbSvc.selectedGenre === '14'" class="fantasy-genre">Fantasía</p></li>
           <li class="sci-fi-genre-li" (click)="onGenreClick('878')"><p [class.selected]="movieDbSvc.selectedGenre === '878'" class="sci-fi-genre">Ciencia ficción</p></li>
-        </ul>
-      </li>
-      <li>
-        <h2 class="year-label">Año</h2>
-        <ul class="sub-options-year">
-          <li class="year-one-li"><p class="prueba">Año 2000</p></li>
-          <li><p class="prueba2">Año 2010</p></li>
         </ul>
       </li>
     </ul>
