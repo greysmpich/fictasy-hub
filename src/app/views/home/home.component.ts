@@ -15,7 +15,9 @@ export class HomeComponent implements OnInit {
   pageSize = 20;
   totalResults = 0;
   selectedGenre: string = '';
-  genres = 878 | 14
+  selectedYear: number = 0;
+  genres = ['878', '14'];
+  language = 'es-ES';
 
 
   constructor(private movieDbSvc: MovieDatabaseService) { }
@@ -27,7 +29,7 @@ export class HomeComponent implements OnInit {
 
 
   loadMovies(): void {
-    const apiUrlWithPage = `https://api.themoviedb.org/3/discover/movie?api_key=b74a22ec79c7b7138fb203a5cba89793&with_genres=878|14&language=es-ES&page=${this.p}`;
+    const apiUrlWithPage = this.movieDbSvc.buildApiUrl(this.genres, this.language, this.p);
     this.movieDbSvc.getMovies(apiUrlWithPage).subscribe((resp: ApiResponse) => {
       this.movieList = resp.results;
       this.totalResults = 10000;
@@ -36,8 +38,12 @@ export class HomeComponent implements OnInit {
   }
 
   private subscribeToFilterChanges(): void {
-    this.movieDbSvc.filterChangeEvent.subscribe((genre: string) => {
+    this.movieDbSvc.filterGenreChangeEvent.subscribe((genre: string) => {
       this.loadMoviesWithFilter(genre);
+    });
+    this.movieDbSvc.filterClearEvent.subscribe(() => {
+      this.onClearFilters();
+      this.onAllMoviesClick();
     });
   }
 
@@ -51,9 +57,11 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  // onAllMoviesClick(): void {
-  //   this.loadMovies();
-  // }
+  onAllMoviesClick(): void {
+    this.p = 1;
+    this.onClearFilters();
+    this.loadMovies();
+  }
 
   onPageChange(event: number): void {
     this.p = event;
@@ -62,6 +70,10 @@ export class HomeComponent implements OnInit {
     } else {
       this.loadMovies();
     }
+  }
+
+  onClearFilters(): void {
+    this.selectedGenre = '';
   }
 
   scrollToTop(): void {

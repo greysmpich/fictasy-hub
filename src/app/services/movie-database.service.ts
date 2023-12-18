@@ -8,18 +8,27 @@ import { ApiResponse } from '../shared/interfaces/api-response'
 })
 
 export class MovieDatabaseService {
-  // allMoviesClicked = new EventEmitter<number>();
-  filterChangeEvent = new EventEmitter<string>();
+  filterGenreChangeEvent = new EventEmitter<string>();
   selectedGenre: string = '';
+  filterClearEvent = new EventEmitter<void>();
+ 
  
   constructor(private http: HttpClient) { }
+
+  private apiKey = 'b74a22ec79c7b7138fb203a5cba89793';
+  private baseUrl = 'https://api.themoviedb.org/3';
+
+  buildApiUrl(genres: string[], language: string, page: number): string{
+    const genreString = genres.join('|');
+    return `${this.baseUrl}/discover/movie?api_key=${this.apiKey}&with_genres=${genreString}&language=${language}&page=${page}`
+  }
 
   getMovies(url: string):Observable<ApiResponse>{    
     return this.http.get<ApiResponse>(url)
   }
 
-  // clearFilters(): void {
-  //   this.selectedGenre = '';
-  //   this.filterChangeEvent.emit('');
-  // }
+  clearFilters(): void {
+    this.selectedGenre = '';
+    this.filterClearEvent.emit();
+  }
 }

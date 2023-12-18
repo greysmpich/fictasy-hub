@@ -6,9 +6,14 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./paginator.component.css']
 })
 export class PaginatorComponent {
-@Output() pageChange = new EventEmitter<number>();
+  @Output() pageChange = new EventEmitter<number>();
+  @Output() clearFilters = new EventEmitter<void>();
 
   onPageChange(event: number): void {
     this.pageChange.emit(event);
-}
+  }
+
+  onClearFilters(): void {
+    this.clearFilters.emit();
+  }
 }
