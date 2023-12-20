@@ -1,0 +1,9 @@
+<div class="sort-by-dropdown">
+    <label for="sort-by">Ordenar por:</label>
+    <select id="sort-by" class="sort-by" [(ngModel)]="selectedOption" (change)="onSortByChange($event)">
+        <option value="popularity.desc" class="desc-popularity" [selected]="movieDbSvc.isAFilterSelected">Más populares</option> 
+        <option value="primary_release_date.desc" class="desc-release-date">Fecha de estreno descendente</option> 
+        <option value="primary_release_date.asc" class="asc-release-date">Fecha de estreno ascendente</option> 
+    </select>
+</div>
+  

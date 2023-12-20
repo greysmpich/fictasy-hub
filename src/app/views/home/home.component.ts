@@ -1,7 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { MovieDatabaseService } from '../../services/movie-database.service';
 import { Movie } from '../../shared/interfaces/movie';
 import { ApiResponse } from "src/app/shared/interfaces/api-response";
+//import { Subscription } from "rxjs";
 
 @Component({
   selector: 'app-home',
@@ -14,66 +15,93 @@ export class HomeComponent implements OnInit {
   p = 1;
   pageSize = 20;
   totalResults = 0;
-  selectedGenre: string = '';
-  selectedYear: number = 0;
-  genres = ['878', '14'];
+  genres = '878 | 14';
+  option = 'popularity.desc'
   language = 'es-ES';
-
+  selectedGenre: string = '';
+  selectedOption: string = '';
+  //private subscriptions: Subscription [] = [];
 
   constructor(private movieDbSvc: MovieDatabaseService) { }
+  
   ngOnInit(): void {
-    this.loadMovies();
+    this.loadMovies(this.genres, this.option);
     this.subscribeToFilterChanges();
     this.selectedGenre = this.movieDbSvc.selectedGenre;
-  }
+    this.selectedOption = this.movieDbSvc.selectedOption;
+   }
 
-
-  loadMovies(): void {
-    const apiUrlWithPage = this.movieDbSvc.buildApiUrl(this.genres, this.language, this.p);
-    this.movieDbSvc.getMovies(apiUrlWithPage).subscribe((resp: ApiResponse) => {
-      this.movieList = resp.results;
-      this.totalResults = 10000;
-      this.scrollToTop();
-    });
-  }
+  // ngOnDestroy(): void{
+  //   this.subscriptions.forEach(sub => sub.unsubscribe());
+  // }
 
   private subscribeToFilterChanges(): void {
-    this.movieDbSvc.filterGenreChangeEvent.subscribe((genre: string) => {
-      this.loadMoviesWithFilter(genre);
-    });
-    this.movieDbSvc.filterClearEvent.subscribe(() => {
-      this.onClearFilters();
-      this.onAllMoviesClick();
-    });
+    //this.subscriptions.push(
+      this.movieDbSvc.filterGenreChange$.subscribe((genre: string) => {
+        this.loadMoviesWithFilter(genre, this.option);
+      });
+      this.movieDbSvc.filterClear$.subscribe(() => {
+        this.onClearFilters();
+        this.onAllMoviesClick();
+      });
+      this.movieDbSvc.pageReset$.subscribe(() => {
+        this.p = 1;
+        this.loadMoviesWithFilter(this.selectedGenre, this.option);
+      })
+   // );    
   }
 
-  private loadMoviesWithFilter(genre: string): void {
-    this.selectedGenre = genre;
-    const apiUrlWithPageAndGenre = `https://api.themoviedb.org/3/discover/movie?api_key=b74a22ec79c7b7138fb203a5cba89793&with_genres=${genre}&language=es-ES&page=${this.p}`;
-    this.movieDbSvc.getMovies(apiUrlWithPageAndGenre).subscribe((resp: ApiResponse) => {
-      this.movieList = resp.results;
+  private loadMovies(genre: string, option: string): void {
+    const apiUrlWithPage = this.movieDbSvc.buildApiUrl(genre ? genre : this.genres, this.language, this.p, option ? option : this.option);
+    this.movieDbSvc.getMovies(apiUrlWithPage).subscribe((resp: ApiResponse) => {
+      this.movieList = resp.results;    
       this.totalResults = 10000;
       this.scrollToTop();
     });
   }
 
-  onAllMoviesClick(): void {
-    this.p = 1;
-    this.onClearFilters();
-    this.loadMovies();
+  private loadMoviesWithFilter(genre: string, option: string): void {
+    this.selectedGenre = genre;
+    this.option = option;
+    this.loadMovies(this.selectedGenre, this.option);
   }
 
+  onSortByChange(selectedOption: string): void {
+    this.selectedOption = selectedOption;
+    if (this.selectedGenre && this.selectedOption){
+      this.loadMovies(this.selectedGenre, this.selectedOption);
+    } else {
+      this.loadMovies(this.genres, this.selectedOption);
+    }
+  }
+  
   onPageChange(event: number): void {
     this.p = event;
     if (this.selectedGenre) {
-      this.loadMoviesWithFilter(this.selectedGenre);
+      this.loadMoviesWithPagination(this.selectedGenre, this.selectedOption);
     } else {
-      this.loadMovies();
+      this.loadMoviesWithPagination(this.genres, this.selectedOption);
     }
+  }
+
+  private loadMoviesWithPagination(genre: string, option: string): void {
+    this.selectedGenre = genre;
+    this.selectedOption = option;
+    if (this.selectedGenre && this.selectedOption) {
+      this.loadMovies(this.selectedGenre, this.selectedOption);
+    } else {
+      this.loadMovies(this.genres, this.selectedOption)
+    }
+  }
+  onAllMoviesClick(): void {
+    this.p = 1;
+    this.onClearFilters();
+    this.loadMovies(this.genres, this.option);
   }
 
   onClearFilters(): void {
     this.selectedGenre = '';
+    this.selectedOption = this.option;
   }
 
   scrollToTop(): void {

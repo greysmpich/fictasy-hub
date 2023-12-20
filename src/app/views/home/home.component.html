@@ -1,5 +1,8 @@
 <section class="homeSection">
-    <app-filter></app-filter>
+    <div class="filter-sort-controls">
+        <app-filter></app-filter>
+        <app-sort-by (sortByChangeEvent)="onSortByChange($event)"></app-sort-by>
+    </div>
     <div class="cardsContainer">
        <app-card *ngFor="let movie of movieList | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: totalResults }"
        [movie] = "movie"></app-card> 
