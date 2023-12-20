@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SortByComponent } from './sort-by.component';
+import { mockMovieDbSvc } from '../../services/mock.movie-database.service';
+import { MovieDatabaseService } from '../../services/movie-database.service';
+
 
 describe('SortByComponent', () => {
   let component: SortByComponent;
@@ -8,7 +10,10 @@ describe('SortByComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SortByComponent ]
+      declarations: [ SortByComponent ],
+      providers: [
+        { provide: MovieDatabaseService, useValue: mockMovieDbSvc }
+      ]
     })
     .compileComponents();
 
@@ -19,5 +24,19 @@ describe('SortByComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should initialize component and subscribe to isAFilterSelected$', () => {
+    expect(mockMovieDbSvc.isAFilterSelected$.subscribe).toHaveBeenCalled();
+    if(mockMovieDbSvc.isAFilterSelected$.next(true)){
+      expect(component.selectedOption).toBe('popularity.desc');
+    } 
+  });
+
+  it('should emit sortByChangeEvent on sort change', () => {
+    const selectedValue = 'primary_release_date';
+    const emitSpy = jest.spyOn(component.sortByChangeEvent, 'emit');
+    component.onSortByChange({ target: { value: selectedValue } });
+    expect(emitSpy).toHaveBeenCalledWith(selectedValue);
   });
 });
