@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { FilterComponent } from './filter.component';
+import { mockMovieDbSvc } from '../../services/mock.movie-database.service';
+import { MovieDatabaseService } from '../../services/movie-database.service';
 
 describe('FilterComponent', () => {
   let component: FilterComponent;
@@ -8,16 +9,42 @@ describe('FilterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FilterComponent ]
+      declarations: [ FilterComponent ], 
+      providers: [
+        { provide: MovieDatabaseService, useValue: mockMovieDbSvc }
+      ]
     })
     .compileComponents();
 
     fixture = TestBed.createComponent(FilterComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should emit genre change on onGenreClick', () => {
+    const genre = 'Fantasy';
+
+    component.onGenreClick(genre);
+
+    expect(mockMovieDbSvc.selectedGenre).toBe(genre);
+    expect(mockMovieDbSvc.filterGenreChange$.emit).toHaveBeenCalledWith(genre);
+    expect(mockMovieDbSvc.setFilterSelectedState).toHaveBeenCalledWith(true);
+    expect(mockMovieDbSvc.pageReset$.emit).toHaveBeenCalled();
+  });
+
+  it('should clear filters on onAllMoviesClick', () => {
+    const genre = 'Fantasy';
+
+    component.onAllMoviesClick();
+
+    expect(mockMovieDbSvc.clearFilters).toHaveBeenCalled();
+    expect(mockMovieDbSvc.setFilterSelectedState).toHaveBeenCalledWith(true);
+    expect(mockMovieDbSvc.pageReset$.emit).toHaveBeenCalled();
+  });
+
+  it('should call ngOnInit', () => {
+    component.ngOnInit();
+
+    expect(mockMovieDbSvc.setFilterSelectedState).toHaveBeenCalledWith(true);
+    expect(mockMovieDbSvc.clearFilters).toHaveBeenCalled();
   });
 });

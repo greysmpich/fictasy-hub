@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MovieDatabaseService } from 'src/app/services/movie-database.service';
+import { MovieDatabaseService } from '../../services/movie-database.service';
 
 @Component({
   selector: 'app-filter',
