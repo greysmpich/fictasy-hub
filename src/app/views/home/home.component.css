@@ -1,3 +1,8 @@
+.filter-sort-controls {
+    display: flex;
+    width: 100%;
+}
+
 .cardsContainer {
     display: flex;
     flex-direction: row;

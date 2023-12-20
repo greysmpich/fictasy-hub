@@ -1,0 +1,27 @@
+.sort-by-dropdown {
+    display: flex;
+    align-content: center;
+    margin-left: 40px;
+    justify-self: center;
+    height: 45px;
+    color: white;
+    border-radius: 30px;
+    background-color: rgb(255, 0, 164);
+}
+
+label[for=sort-by]{
+    font-size: 25px;
+    padding-left: 15px;
+    padding-top: 6px;
+}
+
+.sort-by{
+    font-size: 18px;
+    color: white;
+    margin-left: 5px;
+    border-radius: 30px;
+    background-color: rgb(255, 0, 164);
+    border-top: none;
+    border-left: none;
+    border-bottom: none;
+}

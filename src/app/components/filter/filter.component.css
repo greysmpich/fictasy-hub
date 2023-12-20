@@ -4,7 +4,7 @@
 
  .filters-dropdown {
    width: 159px;
-   margin-left: 1.5%;
+   margin-left: 25px;
    margin-bottom: 20px;
  }
 
@@ -12,6 +12,7 @@
    width: 159px;
    height: 48px;
    font-size: 25px;
+   border: 0;
    border-radius: 30px;
    background-color: rgb(255, 0, 164);
    cursor: pointer;
@@ -40,9 +41,7 @@
   padding-left: 5px;
   font-size: 20px;
   font-weight: lighter;
-  border-bottom-color: rgb(0, 253, 242);
-  border-bottom-width: 3px;
-  border-bottom-style: solid;
+  border-bottom: 3px solid rgb(0, 253, 242);
   cursor: pointer;
  }
 
@@ -99,9 +98,7 @@
  }
 
  .fantasy-genre-li {
-   border-bottom-color: rgb(0, 253, 242);
-   border-bottom-width: 3px;
-   border-bottom-style: solid;
+  border-bottom: 3px solid rgb(0, 253, 242);
  }
 
  .fantasy-genre,

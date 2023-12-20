@@ -11,6 +11,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FilterComponent } from './components/filter/filter.component';
 import { PaginatorComponent } from './components/paginator/paginator.component';
+import { SortByComponent } from './components/sort-by/sort-by.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -22,13 +24,15 @@ import { PaginatorComponent } from './components/paginator/paginator.component';
     FooterComponent,
     FilterComponent,
     PaginatorComponent,
+    SortByComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
