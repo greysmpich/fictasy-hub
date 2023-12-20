@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CardComponent } from './card.component';
+import { throwError } from 'rxjs';
 
 describe('CardComponent', () => {
   let component: CardComponent;
@@ -140,5 +141,35 @@ describe('CardComponent', () => {
      }
 
      expect(component.getGenre()).toEqual('Fantasía y Ciencia ficción');
+  })
+
+  it('should return a the poster path if exist in the api', () => {
+    const component = new CardComponent();
+    component.movie = { 
+      poster_path: 'ruta/poster7.png', 
+      title: 'Prueba7',
+      release_date: '', 
+      genre_ids: [14, 878], 
+      id: 701277,
+      overview: 'Esta es una prueba',
+      vote_average: 7.5
+     }
+
+     expect(component.getImageUrl()).toEqual(`https://image.tmdb.org/t/p/w300/${component.movie.poster_path}`);
+  })
+  
+  it('should return a default image path if the api throw an error for the poster path', () => {
+    const component = new CardComponent();
+    component.movie = { 
+      poster_path: '', 
+      title: 'Prueba8',
+      release_date: '', 
+      genre_ids: [14, 878], 
+      id: 80128,
+      overview: 'Esta es una prueba',
+      vote_average: 8.5
+     }
+
+     expect(component.getImageUrl()).toEqual('../../../assets/images/image-not-available.png');
   })
 });
