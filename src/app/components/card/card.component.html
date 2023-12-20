@@ -1,5 +1,6 @@
 <div class="card">
-    <img src="https://image.tmdb.org/t/p/w300/{{movie?.poster_path}}" alt="">
+    <img src="{{getImageUrl()}}" alt="">
+    <h2 class="title">{{movie?.title}}</h2>
     <div class="movieInfo">
         <h4 class="year">{{ getReleaseYear() }}</h4>
         <h4 class="genre">{{ getGenre() }}</h4>
