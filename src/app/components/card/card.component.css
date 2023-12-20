@@ -5,9 +5,9 @@
     display: grid;
     border-radius: 10px;
     grid-template-columns: 100%;
-    grid-template-rows: 85% 15%;
-
+    grid-template-rows: 20% 65% 15%;
 }
+
 img{
     border-radius: 10px;
     object-fit: cover;
@@ -15,7 +15,20 @@ img{
     height:100%;
     grid-column-start: 1;
     grid-row-start: 1;
-    grid-row-end: 3;
+    grid-row-end: 4;
+}
+
+.title{   
+    width:300px;
+    grid-column-start: 1;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    text-align: center;
+    justify-self: center;
+    align-self: start;
+    font-size: 20px;
+    color: rgb(39, 29, 79);
+    background-color: rgba(255, 255, 255, 0.7);
 }
 
 .movieInfo{
@@ -24,8 +37,8 @@ img{
     border-bottom-right-radius: 10px;
     grid-column-start: 1;
     grid-column-end: 1;
-    grid-row-start: 2;
-    grid-row-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 4;
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: 25% 25% 25% 25%;

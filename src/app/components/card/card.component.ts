@@ -40,4 +40,12 @@ getGenre(): string | null {
   }
   return null
 }
+
+getImageUrl(): string | null {
+  if(this.movie && this.movie.poster_path) {
+    return `https://image.tmdb.org/t/p/w300/${this.movie.poster_path}`;
+    } else { 
+      return '../../../assets/images/image-not-available.png';
+  }
+}
 }
