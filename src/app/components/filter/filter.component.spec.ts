@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FilterComponent } from './filter.component';
-import { mockMovieDbSvc } from '../../services/mock.movie-database.service';
-import { MovieDatabaseService } from '../../services/movie-database.service';
+import { mockMovieDbSvc } from '../../services/database/mock.movie-database.service';
+import { MovieDatabaseService } from '../../services/database/movie-database.service';
 
 describe('FilterComponent', () => {
   let component: FilterComponent;

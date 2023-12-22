@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { MovieDatabaseService } from '../../services/movie-database.service';
+import { MovieDatabaseService } from '../../services/database/movie-database.service';
 
 @Component({
   selector: 'app-sort-by',

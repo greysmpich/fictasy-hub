@@ -13,6 +13,8 @@ import { FilterComponent } from './components/filter/filter.component';
 import { PaginatorComponent } from './components/paginator/paginator.component';
 import { SortByComponent } from './components/sort-by/sort-by.component';
 import { FormsModule } from '@angular/forms';
+import { MovieDetailComponent } from './views/movie-detail/movie-detail.component';
+import { RaitingComponent } from './components/raiting/raiting.component';
 
 
 @NgModule({
@@ -25,6 +27,8 @@ import { FormsModule } from '@angular/forms';
     FilterComponent,
     PaginatorComponent,
     SortByComponent,
+    MovieDetailComponent,
+    RaitingComponent,
   ],
   imports: [
     BrowserModule,

@@ -5,7 +5,8 @@
     </div>
     <div class="cardsContainer">
        <app-card *ngFor="let movie of movieList | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: totalResults }"
-       [movie] = "movie"></app-card> 
+       [movie] = "movie" (click)="onCardClick(movie.id)">
+    </app-card> 
     </div>
 </section>
 <app-paginator (pageChange)="onPageChange($event)"></app-paginator>
