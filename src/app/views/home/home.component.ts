@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { MovieDatabaseService } from '../../services/movie-database.service';
+import { MovieDatabaseService } from '../../services/database/movie-database.service';
 import { Movie } from '../../shared/interfaces/movie';
 import { ApiResponse } from "src/app/shared/interfaces/api-response";
+import { Router } from '@angular/router';
 //import { Subscription } from "rxjs";
 
 @Component({
@@ -22,7 +23,7 @@ export class HomeComponent implements OnInit {
   selectedOption: string = '';
   //private subscriptions: Subscription [] = [];
 
-  constructor(private movieDbSvc: MovieDatabaseService) { }
+  constructor(private movieDbSvc: MovieDatabaseService, private router: Router) { }
   
   ngOnInit(): void {
     this.loadMovies(this.genres, this.option);
@@ -34,7 +35,10 @@ export class HomeComponent implements OnInit {
   // ngOnDestroy(): void{
   //   this.subscriptions.forEach(sub => sub.unsubscribe());
   // }
-
+  onCardClick(movieId: number) {
+    this.router.navigate(['/movie', movieId]);
+  }
+  
   private subscribeToFilterChanges(): void {
     //this.subscriptions.push(
       this.movieDbSvc.filterGenreChange$.subscribe((genre: string) => {

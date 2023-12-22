@@ -1,0 +1,30 @@
+<div class="movie-detail">
+    <div class="image">
+        <img class="movie-poster" src="{{getImageUrl()}}" alt="{{movieDetails?.title}}">
+    </div>
+    <div class="details">
+        <h1 class="title">{{movieDetails?.title}}</h1>
+        <div class="votation">
+            <app-raiting [voteAverage]="movieDetails?.vote_average"></app-raiting>
+            <p class="vote-count">{{movieDetails?.vote_count}} votos</p>
+        </div>
+        <div class="release">
+            <h2 class="sub-title-release-date">Fecha de lanzamiento: </h2>
+            <p class="release-date">{{movieDetails?.release_date}}</p>
+        </div>
+        <div class="genres">
+            <h2 class="sub-title-genres">Género: </h2>
+            <p class="genres-list">
+              <span *ngFor="let genre of movieDetails?.genres; let last = last">
+                {{ genre.name }}{{ !last ? ', ' : '' }}
+              </span> 
+            </p>
+        </div>
+        <div class="runtime">
+            <h2 class="sub-title-run-time">Duración: </h2>
+            <p class="run-time">{{movieDetails?.runtime}}</p>
+        </div>
+        <h2 class="sub-title-overview">Sinópsis</h2>
+        <p class="overview">{{movieDetails?.overview}}</p>
+    </div>
+</div>

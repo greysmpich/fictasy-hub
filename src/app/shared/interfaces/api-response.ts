@@ -4,3 +4,4 @@ export interface ApiResponse {
   results: Movie[];
   total_results: number;
 }
+

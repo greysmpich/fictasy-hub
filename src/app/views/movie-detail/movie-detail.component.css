@@ -1,0 +1,42 @@
+.movie-detail {
+    margin-left: 80px;
+    margin-bottom: 10%;
+    margin-top: 10%;
+    display: flex;
+    flex-direction: row;
+    color: white;
+}
+
+.movie-poster {
+    height: 500px;
+    width: auto;
+
+}
+
+.details {
+    margin-left: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.votation,
+.release,
+.genres,
+.runtime {
+    display: flex;
+    flex-direction: row;
+}
+
+.release-date,
+.genres-list,
+.run-time {
+    align-self: center;
+    font-size: 18px;
+}
+
+.overview {
+    width: 80%;
+    font-size: 18px;
+    text-align: justify;
+}
+

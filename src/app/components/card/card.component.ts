@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Movie } from '../../shared/interfaces/movie'
+import { Movie } from '../../shared/interfaces/movie';
+import { MovieDatabaseService } from '../../services/database/movie-database.service';
+import { ClickedMovieService } from '../../services/clicked-movie/clicked-movie.service';
 
 @Component({
   selector: 'app-card',
@@ -8,7 +10,10 @@ import { Movie } from '../../shared/interfaces/movie'
 })
 export class CardComponent implements OnInit {
 @Input() movie: Movie | undefined;
-constructor(){ }
+constructor(
+  private movieDbSvc: MovieDatabaseService,
+  private clickedMvSvc: ClickedMovieService
+  ){ }
 
 ngOnInit(): void{ }
 
@@ -42,10 +47,14 @@ getGenre(): string | null {
 }
 
 getImageUrl(): string | null {
-  if(this.movie && this.movie.poster_path) {
-    return `https://image.tmdb.org/t/p/w300/${this.movie.poster_path}`;
-    } else { 
-      return '../../../assets/images/image-not-available.png';
+  return this.movieDbSvc.getImageUrl(this.movie as Movie);
+}
+
+onCardClick(): void {
+  if (this.movie && this.movie.id) {
+    this.clickedMvSvc.setClickedMovieId(this.movie.id);
+    console.log('Card clicked', this.movie.id);
   }
 }
+
 }

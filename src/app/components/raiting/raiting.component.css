@@ -1,0 +1,13 @@
+.rating-container {
+    font-size: 24px;
+    color: #ffd700; /* Color de estrellas llenas */
+    display: inline-block;
+  }
+
+  .filled {
+    color: #ffd700; /* Color de estrellas llenas */
+  }
+
+  .star {
+    color: #ddd; /* Color de estrellas no llenas */
+  }
