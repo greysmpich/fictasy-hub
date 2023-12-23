@@ -5,7 +5,7 @@
     <div class="details">
         <h1 class="title">{{movieDetails?.title}}</h1>
         <div class="votation">
-            <app-raiting [voteAverage]="movieDetails?.vote_average"></app-raiting>
+            <app-rating [voteAverage]="movieDetails?.vote_average || 0"></app-rating>
             <p class="vote-count">{{movieDetails?.vote_count}} votos</p>
         </div>
         <div class="release">
