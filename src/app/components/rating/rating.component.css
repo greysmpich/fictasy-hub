@@ -1,0 +1,11 @@
+.rating-container {
+  font-size: 30px;
+}
+
+.star {
+  color: rgb(255, 255, 255); 
+}
+
+.filled {
+  color: rgb(229, 243, 6); 
+}

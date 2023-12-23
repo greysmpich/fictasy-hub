@@ -14,7 +14,7 @@ import { PaginatorComponent } from './components/paginator/paginator.component';
 import { SortByComponent } from './components/sort-by/sort-by.component';
 import { FormsModule } from '@angular/forms';
 import { MovieDetailComponent } from './views/movie-detail/movie-detail.component';
-import { RaitingComponent } from './components/raiting/raiting.component';
+import { RatingComponent } from './components/rating/rating.component';
 
 
 @NgModule({
@@ -28,7 +28,7 @@ import { RaitingComponent } from './components/raiting/raiting.component';
     PaginatorComponent,
     SortByComponent,
     MovieDetailComponent,
-    RaitingComponent,
+    RatingComponent,
   ],
   imports: [
     BrowserModule,
