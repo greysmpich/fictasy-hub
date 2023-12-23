@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class RatingComponent {
   @Input() voteAverage: number = 0;
-  private readonly maxStars: number = 5;
+  maxStars: number = 5;
   filledStars: number = 0;
 
   get stars(): number[] {
