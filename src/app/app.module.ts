@@ -15,6 +15,7 @@ import { SortByComponent } from './components/sort-by/sort-by.component';
 import { FormsModule } from '@angular/forms';
 import { MovieDetailComponent } from './views/movie-detail/movie-detail.component';
 import { RatingComponent } from './components/rating/rating.component';
+import { BackButtonComponent } from './components/back-button/back-button.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { RatingComponent } from './components/rating/rating.component';
     SortByComponent,
     MovieDetailComponent,
     RatingComponent,
+    BackButtonComponent,
   ],
   imports: [
     BrowserModule,
