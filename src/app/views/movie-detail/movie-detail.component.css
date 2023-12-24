@@ -1,7 +1,7 @@
 .movie-detail {
     margin-left: 80px;
-    margin-bottom: 10%;
-    margin-top: 10%;
+    margin-bottom: 5%;
+    margin-top: 2%;
     display: flex;
     flex-direction: row;
     color: white;
@@ -25,18 +25,33 @@
 .runtime {
     display: flex;
     flex-direction: row;
+    margin-top: 3%;
 }
 
-.release-date,
+.votation{
+    margin-top: 0 !important;
+}
+
+.vote-count, .release-date,
 .genres-list,
 .run-time {
     align-self: center;
     font-size: 18px;
+    margin-left: 2%;
+}
+
+.vote-count{
+    margin-top: 1%;
+}
+
+.sub-title-overview{
+    margin-top: 3%;
 }
 
 .overview {
-    width: 80%;
+    width: 97%;
     font-size: 18px;
     text-align: justify;
+    margin-top: 2.5%;
 }
 

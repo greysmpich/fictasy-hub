@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
   //   this.subscriptions.forEach(sub => sub.unsubscribe());
   // }
   onCardClick(movieId: number) {
-    this.router.navigate(['/movie', movieId]);
+    this.router.navigate(['/movie-detail', movieId]);
   }
   
   private subscribeToFilterChanges(): void {
