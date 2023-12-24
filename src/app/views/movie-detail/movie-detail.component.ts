@@ -14,7 +14,6 @@ export class MovieDetailComponent implements OnInit {
   movieDetails: MovieDetails | undefined;
   language = 'es-ES';
 
-
   constructor(
     private router: Router,
     private movieDbSvc: MovieDatabaseService,
@@ -47,5 +46,30 @@ export class MovieDetailComponent implements OnInit {
 
   getImageUrl(): string | null {
     return this.movieDbSvc.getImageUrl(this.movieDetails as MovieDetails);
+  }
+
+  getYear(): string | null {
+    if(this.movieDetails?.release_date){
+      return new Date(this.movieDetails?.release_date).getFullYear().toString();
+    }
+    return null;
+  }
+  
+  reverseReleaseDate(): string | null{
+    if(this.movieDetails?.release_date){
+      const releaseDate: string = this.movieDetails?.release_date.toString();
+      const parts: string[] = releaseDate.split('-');
+      const reverseReleaseDate: string = `${parts[2]}/${parts[1]}/${parts[0]}`
+      
+      return reverseReleaseDate
+    }
+    return null
+  }
+
+  minutesToHours(minutes: number): { hours: number, minutes: number} {
+    const hours = Math.floor(minutes / 60);
+    const remainingMinutes = minutes % 60;
+
+    return { hours, minutes: remainingMinutes };
   }
 }
