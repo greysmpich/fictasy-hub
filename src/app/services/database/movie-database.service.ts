@@ -15,6 +15,7 @@ export class MovieDatabaseService {
   isAFilterSelected$ = new EventEmitter<boolean>();
   isAFilterSelected: boolean = false;
   selectedOption: string = '';
+  currentPage: number = 1;
   pageReset$ = new EventEmitter<void>();
  
   constructor(private http: HttpClient) { }

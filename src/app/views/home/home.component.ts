@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit {
     this.subscribeToFilterChanges();
     this.selectedGenre = this.movieDbSvc.selectedGenre;
     this.selectedOption = this.movieDbSvc.selectedOption;
+    this.p = this.movieDbSvc.currentPage;
    }
 
   // ngOnDestroy(): void{
@@ -42,6 +43,7 @@ export class HomeComponent implements OnInit {
   private subscribeToFilterChanges(): void {
     //this.subscriptions.push(
       this.movieDbSvc.filterGenreChange$.subscribe((genre: string) => {
+        this.p = 1;
         this.loadMoviesWithFilter(genre, this.option);
       });
       this.movieDbSvc.filterClear$.subscribe(() => {
@@ -77,26 +79,24 @@ export class HomeComponent implements OnInit {
     } else {
       this.loadMovies(this.genres, this.selectedOption);
     }
+    this.movieDbSvc.selectedOption = selectedOption;
   }
   
   onPageChange(event: number): void {
     this.p = event;
-    if (this.selectedGenre) {
-      this.loadMoviesWithPagination(this.selectedGenre, this.selectedOption);
+    if (this.selectedGenre && this.selectedOption) {
+      this.loadMovies(this.selectedGenre, this.selectedOption)
+    } else if (this.selectedGenre) {
+      this.loadMoviesWithFilter(this.selectedGenre, this.option);
+    } else if (this.selectedOption) {
+      this.loadMovies(this.genres, this.selectedOption);
     } else {
-      this.loadMoviesWithPagination(this.genres, this.selectedOption);
+      this.loadMovies(this.genres, this.option);
     }
+    this.movieDbSvc.currentPage = this.p;    
   }
 
-  private loadMoviesWithPagination(genre: string, option: string): void {
-    this.selectedGenre = genre;
-    this.selectedOption = option;
-    if (this.selectedGenre && this.selectedOption) {
-      this.loadMovies(this.selectedGenre, this.selectedOption);
-    } else {
-      this.loadMovies(this.genres, this.selectedOption)
-    }
-  }
+
   onAllMoviesClick(): void {
     this.p = 1;
     this.onClearFilters();
