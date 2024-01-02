@@ -11,16 +11,16 @@ export class SortByComponent implements OnInit {
   @Output() sortByChangeEvent = new EventEmitter<string>();
 
   private subscriptions: Subscription [] = [];
-  selectedOption: string = '';
+  selectedOption: string = 'popularity.desc';
 
   constructor(public movieDbSvc: MovieDatabaseService) { }
 
   ngOnInit(): void { 
-    this.selectedOption = 'popularity.desc';
     this.subscriptions.push(
       this.movieDbSvc.isAFilterSelected$.subscribe(isSelected => {
         if(isSelected) {
           this.selectedOption = 'popularity.desc';
+          this.sortByChangeEvent.emit(this.selectedOption)
         }
       })
     )
