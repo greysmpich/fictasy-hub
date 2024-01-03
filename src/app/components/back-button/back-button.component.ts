@@ -10,7 +10,7 @@ export class BackButtonComponent {
   constructor( private router: Router ) {}
 
   goBack() {
-    this.router.navigate(['/'])
+    this.router.navigate(['/home']);   
   }
 }
 

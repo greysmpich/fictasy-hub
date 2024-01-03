@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MovieDetails, Movie } from '../../shared/interfaces/movie'
 import { MovieDatabaseService } from '../../services/database/movie-database.service';
 import { ClickedMovieService } from '../../services/clicked-movie/clicked-movie.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-movie-detail',
@@ -15,13 +14,16 @@ export class MovieDetailComponent implements OnInit {
   language = 'es-ES';
 
   constructor(
-    private router: Router,
     private movieDbSvc: MovieDatabaseService,
     private clickedMvSvc: ClickedMovieService
   ) {}
 
   ngOnInit(): void {
-    console.log('MovieDetailComponent ngOnInit called');
+    // console.log('MovieDetailComponent ngOnInit');
+    // const savedState = this.movieDbSvc.saveState();
+    // console.log(savedState);
+    
+    // this.movieDbSvc.restoreState(savedState);
     this.clickedMvSvc.getClickedMovieId().subscribe((movieId) => {
       if(movieId){
         this.movieId = movieId;
@@ -29,10 +31,6 @@ export class MovieDetailComponent implements OnInit {
         console.log('MovieDetailComponent initialized')
       }
     })
-  }
-
-  goBack() {
-    this.router.navigate(['/'])
   }
 
   private loadDetails(): void {

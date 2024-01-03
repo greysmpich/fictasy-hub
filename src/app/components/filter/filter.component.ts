@@ -16,12 +16,12 @@ export class FilterComponent implements OnInit {
     this.movieDbSvc.selectedGenre = genre;
     this.movieDbSvc.filterGenreChange$.emit(genre);
     this.movieDbSvc.setFilterSelectedState(true);
-    this.movieDbSvc.pageReset$.emit();
+    //this.movieDbSvc.pageReset$.emit();
   }
 
   onAllMoviesClick(): void {
     this.movieDbSvc.clearFilters();
     this.movieDbSvc.setFilterSelectedState(true);
-    this.movieDbSvc.pageReset$.emit();
+    //this.movieDbSvc.pageReset$.emit();
   }
 }

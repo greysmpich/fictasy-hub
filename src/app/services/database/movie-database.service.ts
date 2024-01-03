@@ -42,6 +42,7 @@ export class MovieDatabaseService {
   clearFilters(): void {
     this.selectedGenre = '';
     this.filterClear$.emit();
+    this.pageReset$.emit();
   }
 
   setFilterSelectedState(isSelected: boolean): void {
@@ -55,6 +56,16 @@ export class MovieDatabaseService {
       } else { 
         return '../../../assets/images/image-not-available.png';
     }
+  }
+
+  saveState() {
+    return { genre: this.selectedGenre, option: this.selectedOption, page: this.currentPage};    
+  }
+
+  restoreState(state: {genre: string, option: string, page: number}){
+    this.selectedGenre = state.genre;
+    this.selectedOption = state.option;
+    this.currentPage = state.page;
   }
 
 }
