@@ -14,7 +14,7 @@ export interface Genres {
 export interface MovieDetails {
   poster_path: string;
   title: string;
-  release_date: Date;
+  release_date: Date | null;
   genres: Genres[];
   id: number;
   runtime: number;
