@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 
 export class HomeComponent implements OnInit {
   movieList: Movie[] = [];
-  p = 1;
+  p: number = 1;
   pageSize = 20;
   totalResults = 0;
   genres = '878 | 14';
@@ -26,7 +26,8 @@ export class HomeComponent implements OnInit {
   constructor(private movieDbSvc: MovieDatabaseService, private router: Router) { }
   
   ngOnInit(): void {
-    this.loadMovies(this.genres, this.option);
+    const currentState = this.movieDbSvc.saveState();
+    this.loadMovies(currentState.genre, currentState.option, currentState.page);
     this.subscribeToFilterChanges();
     this.selectedGenre = this.movieDbSvc.selectedGenre;
     this.selectedOption = this.movieDbSvc.selectedOption;
@@ -37,7 +38,9 @@ export class HomeComponent implements OnInit {
   //   this.subscriptions.forEach(sub => sub.unsubscribe());
   // }
   onCardClick(movieId: number) {
+    const currentState = this.movieDbSvc.saveState();
     this.router.navigate(['/movie-detail', movieId]);
+    this.movieDbSvc.restoreState(currentState)    
   }
   
   private subscribeToFilterChanges(): void {
@@ -57,8 +60,8 @@ export class HomeComponent implements OnInit {
    // );    
   }
 
-  private loadMovies(genre: string, option: string): void {
-    const apiUrlWithPage = this.movieDbSvc.buildApiUrl(genre ? genre : this.genres, this.language, this.p, option ? option : this.option);
+  private loadMovies(genre: string, option: string, page: number): void {
+    const apiUrlWithPage = this.movieDbSvc.buildApiUrl(genre ? genre : this.genres, this.language, page ? page : this.p, option ? option : this.option);
     this.movieDbSvc.getMovies(apiUrlWithPage).subscribe((resp: ApiResponse) => {
       this.movieList = resp.results;    
       this.totalResults = 10000;
@@ -69,15 +72,15 @@ export class HomeComponent implements OnInit {
   private loadMoviesWithFilter(genre: string, option: string): void {
     this.selectedGenre = genre;
     this.option = option;
-    this.loadMovies(this.selectedGenre, this.option);
+    this.loadMovies(this.selectedGenre, this.option, this.p);
   }
 
   onSortByChange(selectedOption: string): void {
     this.selectedOption = selectedOption;
     if (this.selectedGenre && this.selectedOption){
-      this.loadMovies(this.selectedGenre, this.selectedOption);
+      this.loadMovies(this.selectedGenre, this.selectedOption, this.p);
     } else {
-      this.loadMovies(this.genres, this.selectedOption);
+      this.loadMovies(this.genres, this.selectedOption, this.p);
     }
     this.movieDbSvc.selectedOption = selectedOption;
   }
@@ -85,22 +88,22 @@ export class HomeComponent implements OnInit {
   onPageChange(event: number): void {
     this.p = event;
     if (this.selectedGenre && this.selectedOption) {
-      this.loadMovies(this.selectedGenre, this.selectedOption)
+      this.loadMovies(this.selectedGenre, this.selectedOption, this.p)
     } else if (this.selectedGenre) {
       this.loadMoviesWithFilter(this.selectedGenre, this.option);
     } else if (this.selectedOption) {
-      this.loadMovies(this.genres, this.selectedOption);
+      this.loadMovies(this.genres, this.selectedOption, this.p);
     } else {
-      this.loadMovies(this.genres, this.option);
+      this.loadMovies(this.genres, this.option, this.p);
     }
     this.movieDbSvc.currentPage = this.p;    
   }
 
 
   onAllMoviesClick(): void {
-    this.p = 1;
-    this.onClearFilters();
-    this.loadMovies(this.genres, this.option);
+  this.onClearFilters();
+  this.movieDbSvc.currentPage = 1;
+  this.loadMovies(this.genres, this.option, this.movieDbSvc.currentPage);  
   }
 
   onClearFilters(): void {
