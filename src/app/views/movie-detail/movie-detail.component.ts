@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { MovieDetails, Movie } from '../../shared/interfaces/movie'
+import { Component, OnInit } from '@angular/core';
+import { MovieDetails } from '../../shared/interfaces/movie'
 import { MovieDatabaseService } from '../../services/database/movie-database.service';
 import { ClickedMovieService } from '../../services/clicked-movie/clicked-movie.service';
 
@@ -19,11 +19,6 @@ export class MovieDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // console.log('MovieDetailComponent ngOnInit');
-    // const savedState = this.movieDbSvc.saveState();
-    // console.log(savedState);
-    
-    // this.movieDbSvc.restoreState(savedState);
     this.clickedMvSvc.getClickedMovieId().subscribe((movieId) => {
       if(movieId){
         this.movieId = movieId;
@@ -36,9 +31,7 @@ export class MovieDetailComponent implements OnInit {
   private loadDetails(): void {
     const apiUrlMovieDetails = this.movieDbSvc.buildApiUrlDetail(this.movieId, this.language);
     this.movieDbSvc.getDetails(apiUrlMovieDetails).subscribe((resp: MovieDetails) => {
-      this.movieDetails = resp;
-      console.log(resp);
-      
+      this.movieDetails = resp;      
     });
   }
 

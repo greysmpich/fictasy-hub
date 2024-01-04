@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MovieDetailComponent } from './movie-detail.component';
-//import { mockMovieDbSvc } from '../../services/database/mock.movie-database.service';
 import { MovieDatabaseService } from '../../services/database/movie-database.service';
 import { ClickedMovieService } from '../../services/clicked-movie/clicked-movie.service';
 import { BackButtonComponent } from '../../components/back-button/back-button.component';
@@ -38,7 +37,6 @@ describe('MovieDetailComponent', () => {
 
     fixture = TestBed.createComponent(MovieDetailComponent);
     component = fixture.componentInstance;
-    //fixture.detectChanges();
   });
 
   it('should create', () => {
