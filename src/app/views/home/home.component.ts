@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit, NgZone } from "@angular/core";
 import { MovieDatabaseService } from '../../services/database/movie-database.service';
 import { Movie } from '../../shared/interfaces/movie';
 import { ApiResponse } from "src/app/shared/interfaces/api-response";
@@ -23,7 +23,10 @@ export class HomeComponent implements OnInit {
   selectedOption: string = '';
   //private subscriptions: Subscription [] = [];
 
-  constructor(private movieDbSvc: MovieDatabaseService, private router: Router) { }
+  constructor(
+    private movieDbSvc: MovieDatabaseService, 
+    private router: Router, 
+    private ngZone: NgZone) { }
   
   ngOnInit(): void {
     const currentState = this.movieDbSvc.saveState();
@@ -39,11 +42,13 @@ export class HomeComponent implements OnInit {
   // }
   onCardClick(movieId: number) {
     const currentState = this.movieDbSvc.saveState();
-    this.router.navigate(['/movie-detail', movieId]);
+    this.ngZone.run(() => {
+      this.router.navigate(['/movie-detail', movieId]);
+    })
     this.movieDbSvc.restoreState(currentState)    
   }
   
-  private subscribeToFilterChanges(): void {
+   subscribeToFilterChanges(): void {
     //this.subscriptions.push(
       this.movieDbSvc.filterGenreChange$.subscribe((genre: string) => {
         this.p = 1;
@@ -60,16 +65,16 @@ export class HomeComponent implements OnInit {
    // );    
   }
 
-  private loadMovies(genre: string, option: string, page: number): void {
+  loadMovies(genre: string, option: string, page: number): void {
     const apiUrlWithPage = this.movieDbSvc.buildApiUrl(genre ? genre : this.genres, this.language, page ? page : this.p, option ? option : this.option);
     this.movieDbSvc.getMovies(apiUrlWithPage).subscribe((resp: ApiResponse) => {
-      this.movieList = resp.results;    
+      this.movieList = resp.results;
       this.totalResults = 10000;
       this.scrollToTop();
     });
   }
 
-  private loadMoviesWithFilter(genre: string, option: string): void {
+   loadMoviesWithFilter(genre: string, option: string): void {
     this.selectedGenre = genre;
     this.option = option;
     this.loadMovies(this.selectedGenre, this.option, this.p);
