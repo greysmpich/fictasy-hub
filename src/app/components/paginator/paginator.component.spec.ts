@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { NgxPaginationModule } from 'ngx-pagination';
 import { PaginatorComponent } from './paginator.component';
 
 describe('PaginatorComponent', () => {
@@ -8,7 +8,8 @@ describe('PaginatorComponent', () => {
 
   beforeEach( () => {
      TestBed.configureTestingModule({
-      declarations: [ PaginatorComponent ]
+      declarations: [ PaginatorComponent ], 
+      imports: [ NgxPaginationModule ],
     })
     .compileComponents();
 
