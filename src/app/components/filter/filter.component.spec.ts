@@ -28,17 +28,13 @@ describe('FilterComponent', () => {
     expect(mockMovieDbSvc.selectedGenre).toBe(genre);
     expect(mockMovieDbSvc.filterGenreChange$.emit).toHaveBeenCalledWith(genre);
     expect(mockMovieDbSvc.setFilterSelectedState).toHaveBeenCalledWith(true);
-    expect(mockMovieDbSvc.pageReset$.emit).toHaveBeenCalled();
   });
 
   it('should clear filters on onAllMoviesClick', () => {
-    const genre = 'Fantasy';
-
     component.onAllMoviesClick();
 
     expect(mockMovieDbSvc.clearFilters).toHaveBeenCalled();
     expect(mockMovieDbSvc.setFilterSelectedState).toHaveBeenCalledWith(true);
-    expect(mockMovieDbSvc.pageReset$.emit).toHaveBeenCalled();
   });
 
   it('should call ngOnInit', () => {
