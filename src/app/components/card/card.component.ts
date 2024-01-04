@@ -53,7 +53,6 @@ getImageUrl(): string | null {
 onCardClick(): void {
   if (this.movie && this.movie.id) {
     this.clickedMvSvc.setClickedMovieId(this.movie.id);
-    console.log('Card clicked', this.movie.id);
   }
 }
 
