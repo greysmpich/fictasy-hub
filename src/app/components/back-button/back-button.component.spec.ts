@@ -28,6 +28,6 @@ describe('BackButtonComponent', () => {
   it('should return to Home when goBack is called', () => {
     const navigateSpy = jest.spyOn(router, 'navigate');
     component.goBack();
-    expect(navigateSpy).toHaveBeenCalledWith(['/']);
+    expect(navigateSpy).toHaveBeenCalledWith(['/home']);
   });
 });

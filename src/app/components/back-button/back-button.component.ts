@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,10 +7,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./back-button.component.css']
 })
 export class BackButtonComponent {
-  constructor( private router: Router ) {}
+  constructor( private router: Router, private ngZone: NgZone ) {}
 
   goBack() {
-    this.router.navigate(['/home']);   
+    this.ngZone.run(() => {
+      this.router.navigate(['/home']); 
+    })
   }
 }
 
