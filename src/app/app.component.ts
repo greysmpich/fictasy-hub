@@ -13,7 +13,6 @@ export class AppComponent {
   constructor() { }
 
   ngOnInit(): void {
-    console.log("Se cargó el componente padre");
   }
   
 }
