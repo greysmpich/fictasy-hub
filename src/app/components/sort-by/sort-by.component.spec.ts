@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SortByComponent } from './sort-by.component';
 import { mockMovieDbSvc } from '../../services/database/mock.movie-database.service';
 import { MovieDatabaseService } from '../../services/database/movie-database.service';
+import { FormsModule } from '@angular/forms';
 
 
 describe('SortByComponent', () => {
@@ -13,7 +14,8 @@ describe('SortByComponent', () => {
       declarations: [ SortByComponent ],
       providers: [
         { provide: MovieDatabaseService, useValue: mockMovieDbSvc }
-      ]
+      ],
+      imports: [ FormsModule ],
     })
     .compileComponents();
 
