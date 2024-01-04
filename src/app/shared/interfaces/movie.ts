@@ -2,7 +2,7 @@ export interface Movie {
   id: number;
   poster_path: string;
   title: string;
-  release_date: string;
+  release_date: string | null;
   genre_ids: number[];
 }
 
