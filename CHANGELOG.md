@@ -1,17 +1,15 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
-
-### [0.0.3](https://github.com/greysmpich/fictasy-hub/compare/v0.0.2...v0.0.3) (2024-01-03)
+### [0.0.4](https://github.com/greysmpich/fictasy-hub/compare/v0.0.3...v0.0.4) (2024-01-05)
 
 
-### Features
+### Tests
 
-* **components:** se agregó el componente Back button a Movie details para regresar al Home ([922e3c1](https://github.com/greysmpich/fictasy-hub/commit/922e3c161661cd482dd308b5ccfee64ae69123d1))
-* **components:** se crearon los componentes Movie Detail y Raiting. Ambos con estilos y funcionalidad. Aún deben realizarse ajuestes en ambos ([5153799](https://github.com/greysmpich/fictasy-hub/commit/5153799a22e3e8e0b09163b198e2f0cd13479f5f))
+* **components:** se agregaron pruebas unitarias para el componente Home ([58b3d5d](https://github.com/greysmpich/fictasy-hub/commit/58b3d5da93b487178793fc1953ee4686a0101f46))
+* **components:** se corrigieron errores en pruebas del componente Card ([db52d66](https://github.com/greysmpich/fictasy-hub/commit/db52d66e8fd15a84a2d4b2b7dec00ca16f861324))
+* **service:** se agregaron pruebas para el servicio ClickedMovie ([1e0fdcd](https://github.com/greysmpich/fictasy-hub/commit/1e0fdcd13ccf2bd2bc03246107f383de2acd2d73))
+* **components:** se corrigieron errores en las pruebas del componente Filter Paginator ([6a7fe3b](https://github.com/greysmpich/fictasy-hub/commit/6a7fe3b178403e3c81a0e3d193d9bd402b699458))
+* **components:** se actualizaron las pruebas del componente BackButton ([8d69a3b](https://github.com/greysmpich/fictasy-hub/commit/8d69a3b5f4ff20d181deeed214b6fbf10049c639))
+* **components:** se agregaron pruebas para el componente MovieDetail ([a35515c](https://github.com/greysmpich/fictasy-hub/commit/a35515c02a88aa30a068ce741a2cd66b10f711bd))
 
 
-### Bug Fixes
-
-* **components:** se corrigieron errores al navegar del componente MovieDetail de regreso al Home ([8865c66](https://github.com/greysmpich/fictasy-hub/commit/8865c6687caf2118a6f4b00f115bcdbd18948659))
-* **components:** se corrigió un problema con la visualización de resultados en el componente Home al aplicar filtro,  tipo de orden y cambiar de página ([a667e96](https://github.com/greysmpich/fictasy-hub/commit/a667e9637d1198ca4b76646e09f065ffa12769bf))
